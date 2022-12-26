@@ -169,11 +169,13 @@ and infer =
 This corresponds to the following typing rules:
 
 Unit checks against unit
+
 $$
 \frac{}{\vdash ()\Leftarrow1}
 $$
 
 Lambdas check against function types
+
 $$
 \frac{\Gamma,n:t\vdash x\Leftarrow u}
 {\Gamma\vdash \mathtt{fun}\;n.x \Leftarrow t\to u}
@@ -181,22 +183,26 @@ $$
 
 The subsumption rule switches from checking to inferring, making sure that the
 types are equal.
+
 $$
 \frac{\Gamma\vdash x\Rightarrow t \quad t\sim u}{\Gamma\vdash x\Leftarrow u}
 $$
 
 Names infer their bound type
+
 $$
 \frac{x:t\in\Gamma}{\Gamma\vdash x\Rightarrow t}
 $$
 
 Applications infer the return type of the function being applied
+
 $$
 \frac{\Gamma\vdash f\Rightarrow t\to u \quad \Gamma\vdash x\Leftarrow t}
 {\Gamma\vdash f\;x\Rightarrow u}
 $$
 
 Annotations infer the annotated type
+
 $$
 \frac{\Gamma\vdash x\Leftarrow t}{\Gamma\vdash x:t\Rightarrow t}
 $$
@@ -235,6 +241,7 @@ Note that only the outermost `forall`s are "removed". For instance,
 `1 -> (forall a. a -> a)` does not change during instantiation.
 
 The new name rule looks like this:
+
 $$
 \frac{x:t\in\Gamma \quad u=\mathrm{inst}(t)}
 {\Gamma\vdash x\Rightarrow u}
